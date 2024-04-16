@@ -1,6 +1,9 @@
 import math
 
 def real_numbers():
+    """
+    Function to perform operations on real numbers.
+    """
     while True:
         print("\nOperations on Real Numbers:")
         print("1. Addition")
@@ -41,6 +44,9 @@ def real_numbers():
             print("Invalid choice. Please try again.")
 
 def complex_numbers():
+    """
+    Function to perform operations on complex numbers.
+    """
     while True:
         print("\nOperations on Complex Numbers:")
         print("1. Addition")
@@ -94,9 +100,15 @@ def complex_numbers():
             print("Invalid choice. Please try again.")
 
 def allocate_matrix(rows, cols):
+    """
+    Function to allocate memory for a matrix.
+    """
     return [[0] * cols for _ in range(rows)]
 
 def read_matrix(rows, cols):
+    """
+    Function to read elements of a matrix.
+    """
     matrix = []
     for i in range(rows):
         row = list(map(int, input(f"Enter elements of row {i + 1}: ").split()))
@@ -104,36 +116,75 @@ def read_matrix(rows, cols):
     return matrix
 
 def display_matrix(matrix):
+    """
+    Function to display a matrix.
+    """
     for row in matrix:
         print(' '.join(map(str, row)))
 
 def matrix_addition(matrix1, matrix2):
-    result = [[matrix1[i][j] + matrix2[i][j] for j in range(len(matrix1[0]))] for i in range(len(matrix1))]
-    display_matrix(result)
+    """
+    Function to perform matrix addition.
+    """
+    if len(matrix1) == 1 and len(matrix1[0]) == 1:
+        print(f"Result: {matrix1[0][0] + matrix2[0][0]}")
+    else:
+        result = [[matrix1[i][j] + matrix2[i][j] for j in range(len(matrix1[0]))] for i in range(len(matrix1))]
+        display_matrix(result)
 
 def matrix_subtraction(matrix1, matrix2):
-    result = [[matrix1[i][j] - matrix2[i][j] for j in range(len(matrix1[0]))] for i in range(len(matrix1))]
-    display_matrix(result)
+    """
+    Function to perform matrix subtraction.
+    """
+    if len(matrix1) == 1 and len(matrix1[0]) == 1:
+        print(f"Result: {matrix1[0][0] - matrix2[0][0]}")
+    else:
+        result = [[matrix1[i][j] - matrix2[i][j] for j in range(len(matrix1[0]))] for i in range(len(matrix1))]
+        display_matrix(result)
 
 def matrix_multiplication(matrix1, matrix2):
-    if len(matrix1[0]) != len(matrix2):
-        print("The dimensions of matrices are not compatible for multiplication.")
-        return
-    result = [[sum(matrix1[i][k] * matrix2[k][j] for k in range(len(matrix2))) for j in range(len(matrix2[0]))] for i in range(len(matrix1))]
-    display_matrix(result)
+    """
+    Function to perform matrix multiplication.
+    """
+    if len(matrix1) == 1 and len(matrix1[0]) == 1:
+        print(f"Result: {matrix1[0][0] * matrix2[0][0]}")
+    else:
+        rows1, cols1 = len(matrix1), len(matrix1[0])
+        rows2, cols2 = len(matrix2), len(matrix2[0])
+        if cols1 != rows2:
+            print("The dimensions of matrices are not compatible for multiplication.")
+            return
+        result = [[sum(matrix1[i][k] * matrix2[k][j] for k in range(cols1)) for j in range(cols2)] for i in range(rows1)]
+        display_matrix(result)
 
 def element_wise_multiplication(matrix1, matrix2):
-    result = [[matrix1[i][j] * matrix2[i][j] for j in range(len(matrix1[0]))] for i in range(len(matrix1))]
-    display_matrix(result)
+    """
+    Function to perform element-wise multiplication of matrices.
+    """
+    if len(matrix1) == 1 and len(matrix1[0]) == 1:
+        print(f"Result: {matrix1[0][0] * matrix2[0][0]}")
+    else:
+        result = [[matrix1[i][j] * matrix2[i][j] for j in range(len(matrix1[0]))] for i in range(len(matrix1))]
+        display_matrix(result)
 
 def transpose_matrix(matrix):
-    transposed = [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
-    print("Original Matrix:")
-    display_matrix(matrix)
-    print("Transpose Matrix:")
-    display_matrix(transposed)
+    """
+    Function to transpose a matrix.
+    """
+    if len(matrix) == 1 and len(matrix[0]) == 1:
+        print("Transpose Matrix:")
+        display_matrix(matrix)
+    else:
+        transposed = [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+        print("Original Matrix:")
+        display_matrix(matrix)
+        print("Transpose Matrix:")
+        display_matrix(transposed)
 
 def matrices():
+    """
+    Function to perform operations on matrices.
+    """
     while True:
         print("\nOperations on Matrices:")
         print("1. Addition")
@@ -157,12 +208,7 @@ def matrices():
             elif choice == 2:
                 matrix_subtraction(matrix1, matrix2)
             elif choice == 3:
-                m1, n1 = map(int, input("Enter the dimensions (rows and columns) of matrix 1: ").split())
-                m2, n2 = map(int, input("Enter the dimensions (rows and columns) of matrix 2: ").split())
-                if n1 != m2:
-                    print("Matrix multiplication is not possible.")
-                else:
-                    matrix_multiplication(matrix1, matrix2)
+                matrix_multiplication(matrix1, matrix2)
             else:
                 element_wise_multiplication(matrix1, matrix2)
         elif choice == 5:
@@ -175,12 +221,18 @@ def matrices():
             print("Invalid choice. Please try again.")
 
 def factorial(n):
+    """
+    Function to calculate the factorial of a number.
+    """
     result = 1
     for i in range(1, n + 1):
         result *= i
     return result
 
 def series_summation():
+    """
+    Function to perform series summation.
+    """
     while True:
         print("\nOperations on Series Summation:")
         print("1. SinX Series")
@@ -215,6 +267,9 @@ def series_summation():
             print("Invalid choice. Please try again.")
 
 def main():
+    """
+    Main function to control the program flow.
+    """
     while True:
         print("\n--- Multipurpose Computation System ---")
         print("1. Operations on real numbers")
